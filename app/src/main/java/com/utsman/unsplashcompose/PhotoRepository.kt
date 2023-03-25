@@ -3,6 +3,7 @@ package com.utsman.unsplashcompose
 import com.utsman.unsplashcompose.model.Result
 import com.utsman.unsplashcompose.network.NetworkInstance
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -15,6 +16,7 @@ class PhotoRepository(private val scope: CoroutineScope) {
     private var page = 1
     val photos: StateFlow<List<Result>> get() = _photo
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     fun getPhotos() = scope.launch {
         logi("trying get data -----")
         val addLoading = _photo.value.toMutableList()
